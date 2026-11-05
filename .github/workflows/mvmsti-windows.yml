@@ -21,7 +21,7 @@ env:
 
 jobs:
   generate-bridge:
-    uses: ./.github/workflows/bridge.yml
+    uses: ./.github/workflows/mvmsti-bridge.yml
 
   build-topmost-window:
     uses: ./.github/workflows/third-party-RustDeskTempTopMostWindow.yml
@@ -105,7 +105,14 @@ jobs:
           VCPKG_DEFAULT_HOST_TRIPLET: x64-windows-static
         shell: bash
         run: |
-          if ! $VCPKG_ROOT/vcpkg install --triplet x64-windows-static --x-install-root="$VCPKG_ROOT/installed"; then
+          ok=0
+          for attempt in 1 2 3; do
+            if $VCPKG_ROOT/vcpkg install --triplet x64-windows-static --x-install-root="$VCPKG_ROOT/installed"; then
+              ok=1; break
+            fi
+            echo "vcpkg falhou (tentativa $attempt), tentando de novo em 60s..."; sleep 60
+          done
+          if [ "$ok" != "1" ]; then
             find "${VCPKG_ROOT}/" -name "*.log" | while read -r _1; do
               echo "$_1:"; echo "======"; cat "$_1"; echo "======"; echo ""
             done
