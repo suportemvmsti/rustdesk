@@ -167,10 +167,12 @@ jobs:
       - name: Build installer (self-extracting exe)
         shell: bash
         run: |
+          # The installer copies the payload as-is and expects <app-name>.exe inside it.
+          mv ./rustdesk/rustdesk.exe ./rustdesk/${{ env.APP_FILE_NAME }}.exe
           sed -i '/dpiAware/d' res/manifest.xml
           pushd ./libs/portable
           pip3 install -r requirements.txt
-          python3 ./generate.py -f ../../rustdesk/ -o . -e ../../rustdesk/rustdesk.exe
+          python3 ./generate.py -f ../../rustdesk/ -o . -e ../../rustdesk/${{ env.APP_FILE_NAME }}.exe
           popd
           mkdir -p ./Output
           mv ./target/release/rustdesk-portable-packer.exe ./Output/${{ env.APP_FILE_NAME }}-${{ env.VERSION }}-x64.exe
