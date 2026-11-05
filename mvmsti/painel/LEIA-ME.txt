@@ -1,0 +1,3 @@
+Painel web (rustdesk-api-web, MIT) personalizado para o Suporte MVMS-Ti: tradução pt-BR, logo e título.
+Código original: https://github.com/lejianwen/rustdesk-api-web (commit 3998c2a)
+painel-admin.tar.gz = build pronto (vite build) para montar em /app/resources/admin do container lejianwen/rustdesk-api.

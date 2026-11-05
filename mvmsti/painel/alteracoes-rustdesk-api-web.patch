@@ -1,0 +1,68 @@
+diff --git a/index.html b/index.html
+index 9fe6c1d..f19c21d 100644
+--- a/index.html
++++ b/index.html
+@@ -4,7 +4,7 @@
+     <meta charset="UTF-8" />
+     <link rel="icon" href="/favicon.ico" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-    <title>Rustdesk API Admin</title>
++    <title>Suporte MVMS-Ti</title>
+   </head>
+   <body>
+     <div id="app"></div>
+diff --git a/src/assets/logo.png b/src/assets/logo.png
+index 306d505..f99db76 100644
+Binary files a/src/assets/logo.png and b/src/assets/logo.png differ
+diff --git a/src/store/app.js b/src/store/app.js
+index 46caaf3..aeaedc7 100644
+--- a/src/store/app.js
++++ b/src/store/app.js
+@@ -7,9 +7,11 @@ import ru from 'element-plus/es/locale/lang/ru'
+ import fr from 'element-plus/es/locale/lang/fr'
+ import es from 'element-plus/es/locale/lang/es'
+ import zhTw from 'element-plus/es/locale/lang/zh-tw'
++import ptBr from 'element-plus/es/locale/lang/pt-br'
+ import { admin, app, server } from '@/api/config'
+ 
+ const langs = {
++  'pt-BR': { name: 'Português', value: ptBr, sideBarWidth: '260px' },
+   'zh-CN': { name: '中文', value: zhCn, sideBarWidth: '210px' },
+   'en': { name: 'English', value: en, sideBarWidth: '230px' },
+   'fr': { name: 'Français', value: fr, sideBarWidth: '280px' },
+@@ -18,12 +20,13 @@ const langs = {
+   'es': { name: 'Español', value: es, sideBarWidth: '280px' },
+   'zh-TW': { name: '中文繁体', value: zhTw, sideBarWidth: '210px' },
+ }
+-const defaultLang = localStorage.getItem('lang') || navigator.language || 'zh-CN'
++const savedLang = localStorage.getItem('lang')
++const defaultLang = savedLang && langs[savedLang] ? savedLang : 'pt-BR'
+ export const useAppStore = defineStore({
+   id: 'App',
+   state: () => ({
+     setting: {
+-      title: 'Rustdesk API Admin',
++      title: 'Suporte MVMS-Ti',
+       hello: '',
+       sideIsCollapse: false,
+       logo,
+diff --git a/src/utils/i18n.js b/src/utils/i18n.js
+index 5c6878b..56d107f 100644
+--- a/src/utils/i18n.js
++++ b/src/utils/i18n.js
+@@ -5,6 +5,7 @@ import ko from '@/utils/i18n/ko.json'
+ import ru from '@/utils/i18n/ru.json'
+ import es from '@/utils/i18n/es.json'
+ import zhTW from '@/utils/i18n/zh_TW.json'
++import ptBR from '@/utils/i18n/pt_BR.json'
+ import { useAppStore } from '@/store/app'
+ 
+ const trans = {
+@@ -15,6 +16,7 @@ const trans = {
+   'ru': ru,
+   'es': es,
+   'zh-TW': zhTW,
++  'pt-BR': ptBR,
+ }
+ export function T (key, params, num = 0) {
+   const appStore = useAppStore()
