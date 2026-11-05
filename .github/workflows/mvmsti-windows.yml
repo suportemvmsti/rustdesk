@@ -178,11 +178,32 @@ jobs:
           mv ./target/release/rustdesk-portable-packer.exe ./Output/${{ env.APP_FILE_NAME }}-${{ env.VERSION }}-x64.exe
           ls -l ./Output
 
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
+
+      - name: Prepare msi
+        shell: bash
+        run: |
+          pushd ./res/msi
+          python preprocess.py --arp -d ../../rustdesk --app-name "${{ env.APP_FILE_NAME }}" -m "MVMS-Ti" \
+            --custom-arp '{"Contact":{"msi":"ARPCONTACT","v":"https://github.com/suportemvmsti/rustdesk"},"HelpLink":{"msi":"ARPHELPLINK","v":"https://github.com/suportemvmsti/rustdesk"},"ReadMe":{"msi":"ARPREADME","v":"https://github.com/suportemvmsti/rustdesk"}}'
+          popd
+
+      - name: Build msi
+        run: |
+          pushd ./res/msi
+          nuget restore msi.sln
+          msbuild msi.sln -p:Configuration=Release -p:Platform=x64 /p:TargetVersion=Windows10
+          $msi = Get-ChildItem ./Package/bin/*/Release/en-us/Package.msi | Select-Object -First 1
+          mv $msi.FullName ../../Output/${{ env.APP_FILE_NAME }}-${{ env.VERSION }}-x64.msi
+          popd
+          Get-ChildItem ./Output
+
       - name: Upload installer artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: ${{ env.APP_FILE_NAME }}-windows-x64
-          path: ./Output/*.exe
+          path: ./Output/*
           if-no-files-found: error
 
       - name: Publish Release
@@ -190,5 +211,5 @@ jobs:
         with:
           tag_name: ${{ env.RELEASE_TAG }}
           name: Suporte MVMS-Ti ${{ env.VERSION }} (build ${{ github.run_number }})
-          body: Instalador do Suporte MVMS-Ti para Windows (x64). Baseado no RustDesk (AGPL-3.0).
-          files: ./Output/*.exe
+          body: Instaladores do Suporte MVMS-Ti para Windows (x64) - .exe (abre e instala pelo app) e .msi (instalador padrão do Windows). Baseado no RustDesk (AGPL-3.0).
+          files: ./Output/*
