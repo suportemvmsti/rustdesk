@@ -1,0 +1,32 @@
+﻿<!--
+   Copyright (c) Microsoft Corporation.  All rights reserved.
+   
+   The use and distribution terms for this software are covered by the
+   Common Public License 1.0 (http://opensource.org/licenses/cpl1.0.php)
+   which can be found in the file CPL.TXT at the root of this distribution.
+   By using this software in any fashion, you are agreeing to be bound by
+   the terms of this license.
+   
+   You must not remove this notice, or any other, from this software.
+-->
+<!--
+Adapted by RustDesk for Custom Dialogs insertions
+-->
+<WixLocalization Culture="pt-BR"
+	xmlns="http://wixtoolset.org/schemas/v4/wxl">
+
+	<!-- Firewall Extension needs translation here -->
+	<String Id="msierrFirewallCannotConnect" Overridable="yes" Value="Não foi possível conectar ao Firewall do Windows. ([2]   [3]   [4]   [5])" />
+
+	<String Id="WixSchedFirewallExceptionsInstall" Overridable="yes" Value="Configurando o Firewall do Windows" />
+	<String Id="WixSchedFirewallExceptionsUninstall" Overridable="yes" Value="Configurando o Firewall do Windows" />
+	<String Id="WixRollbackFirewallExceptionsInstall" Overridable="yes" Value="Desfazendo a configuração do Firewall do Windows" />
+	<String Id="WixExecFirewallExceptionsInstall" Overridable="yes" Value="Aplicando a configuração do Firewall do Windows" />
+	<String Id="WixRollbackFirewallExceptionsUninstall" Overridable="yes" Value="Desfazendo a configuração do Firewall do Windows" />
+	<String Id="WixExecFirewallExceptionsUninstall" Overridable="yes" Value="Removendo a configuração do Firewall do Windows" />
+
+	<!-- Util Extension does not need translation here, because it is already in official WiX Toolkit -->
+	<String Id="msierrSecureObjectsFailedCreateSD" Overridable="yes" Value="Não foi possível criar o descritor de segurança [3]\[4], erro: [2]" />
+	<String Id="msierrSecureObjectsFailedSet" Overridable="yes" Value="Não foi possível aplicar o descritor de segurança [3], erro: [2]" />
+	<String Id="msierrSecureObjectsUnknownType" Overridable="yes" Value="Tipo de objeto desconhecido [3], erro: [2]" />
+</WixLocalization>

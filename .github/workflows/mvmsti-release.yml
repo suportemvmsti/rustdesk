@@ -198,7 +198,7 @@ jobs:
           pushd ./res/msi
           nuget restore msi.sln
           msbuild msi.sln -p:Configuration=Release -p:Platform=x64 /p:TargetVersion=Windows10
-          $msi = Get-ChildItem ./Package/bin/*/Release/en-us/Package.msi | Select-Object -First 1
+          $msi = Get-ChildItem ./Package/bin/*/Release/*/Package.msi | Select-Object -First 1
           mv $msi.FullName ../../Output/${{ env.APP_FILE_NAME }}-${{ env.VERSION }}-x64.msi
           popd
           Get-ChildItem ./Output

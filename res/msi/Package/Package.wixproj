@@ -4,6 +4,7 @@
     </IncludeSearchPaths>
     <Configurations>Release</Configurations>
     <Platforms>x64;ARM64</Platforms>
+    <Cultures>pt-BR</Cultures>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Includes.wxi" />

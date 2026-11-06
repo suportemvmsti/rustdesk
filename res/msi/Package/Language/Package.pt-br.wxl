@@ -1,0 +1,47 @@
+﻿<!--
+Localizable strings (pt-BR) - Suporte MVMS-Ti
+-->
+<WixLocalization Culture="pt-BR" Codepage="1252"
+	xmlns="http://wixtoolset.org/schemas/v4/wxl">
+
+	<String Id="SummaryCodepage" Value="1252" />
+	<String Id="ProductLanguage" Value="1046" />
+
+	<String Id="DowngradeError" Value="Uma versão mais nova do [ProductName] já está instalada." />
+
+	<String Id="AR_Comment" Value="RustDesk" />
+
+	<String Id="F_App" Value="RustDesk" />
+	<String Id="F_App_Desc" Value="RustDesk - instalação dos programas principais." />
+
+	<String Id="SC_Uninstall" Value="Desinstalar RustDesk" />
+	<String Id="SC_Uninstall_Desc" Value="Remove o RustDesk do computador" />
+
+	<String Id="F_Client" Value="Cliente" />
+	<String Id="F_Client_Desc" Value="A interface do aplicativo." />
+	<String Id="F_LAVFilters" Value="LAV Filters" />
+	<String Id="F_LAVFilters_Desc" Value="Filtros recomendados para melhor reprodução de áudio e vídeo." />
+
+	<String Id="SC_Client" Value="RustDesk" />
+	<String Id="SC_Client_Desc" Value="Abrir o RustDesk." />
+
+	<String Id="SC_Client_Tray" Value="RustDesk (bandeja)" />
+	<String Id="SC_Client_Tray_Desc" Value="Abrir o RustDesk na bandeja do sistema." />
+
+	<String Id="F_Server" Value="Serviço" />
+	<String Id="F_Server_Desc" Value="O serviço do RustDesk que permite o acesso remoto." />
+
+	<String Id="Service_DisplayName" Value="RustDesk Service" />
+	<String Id="Service_Description" Value="Serviço de acesso remoto do RustDesk." />
+
+	<String Id="LC_OS" Value="O [ProductName] requer no mínimo o Windows 7 / 2008 R2." />
+	<String Id="LC_ADMIN" Value="Você precisa ser administrador para instalar o [ProductName]." />
+
+	<String Id="AnotherAppDialogTitle" Value="Instalação cancelada."/>
+	<String Id="AnotherAppDialogDescription" Value="O aplicativo já foi instalado de outra forma (pelo próprio app). Desinstale-o primeiro."/>
+
+	<String Id="MyInstallDirDlgDesktopShortcuts" Value="Criar atalho na área de trabalho" />
+	<String Id="MyInstallDirDlgStartMenuShortcuts" Value="Criar atalhos no menu Iniciar" />
+	<String Id="MyInstallDirDlgPrinter" Value="Instalar a impressora RustDesk" />
+
+</WixLocalization>
