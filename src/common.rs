@@ -121,6 +121,8 @@ impl Drop for SimpleCallOnReturn {
 }
 
 pub fn global_init() -> bool {
+    #[cfg(windows)]
+    set_product_app_name();
     #[cfg(all(target_os = "linux", feature = "drm"))]
     crate::platform::linux::dispatch_wayland_display_probe();
     #[cfg(target_os = "linux")]
@@ -130,6 +132,14 @@ pub fn global_init() -> bool {
         }
     }
     true
+}
+
+#[cfg(windows)]
+pub(crate) fn set_product_app_name() {
+    let mut app_name = hbb_common::config::APP_NAME.write().unwrap();
+    if app_name == "RustDesk" {
+        *app_name = "Suporte MVMS-Ti".to_owned();
+    }
 }
 
 pub fn global_clean() {}
