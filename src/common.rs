@@ -137,7 +137,7 @@ pub fn global_init() -> bool {
 #[cfg(windows)]
 pub(crate) fn set_product_app_name() {
     let mut app_name = hbb_common::config::APP_NAME.write().unwrap();
-    if app_name == "RustDesk" {
+    if *app_name == "RustDesk" {
         *app_name = "Suporte MVMS-Ti".to_owned();
     }
 }
