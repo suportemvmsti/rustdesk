@@ -134,7 +134,7 @@ pub fn global_init() -> bool {
     true
 }
 
-#[cfg(windows)]
+#[cfg(any(windows, target_os = "android"))]
 pub(crate) fn set_product_app_name() {
     let mut app_name = hbb_common::config::APP_NAME.write().unwrap();
     if *app_name == "RustDesk" {
